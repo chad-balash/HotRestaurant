@@ -29,8 +29,21 @@
                     </a>
                 </div>
             </div>
+            <div id="reservation-container"></div>
+            
     </div>
                 
-    
+    <script> $.get("/api/tables", function(data) {
+        data.foreach(function(item) {
+            $('#reservation-container').append(`<div class="card">
+                    <div class="card-body" style="display: flex;">
+                            <i class="fa fa-square-o" aria-hidden="true"></i>
+                            <h3> | </h3>
+                            <h3>${item.name}</h3>
+                    </div>
+                  </div>`)
+        })
+     })
+    </script>
 </body>
 </html>
