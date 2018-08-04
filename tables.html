@@ -33,7 +33,11 @@
             
     </div>
                 
-    <script> $.get("/api/tables", function(data) {
+    <script> 
+
+    $(window).load(getTable());
+    
+    function getTable() {$.get("/api/tables", function(data) {
         data.foreach(function(item) {
             $('#reservation-container').append(`<div class="card">
                     <div class="card-body" style="display: flex;">
@@ -44,6 +48,7 @@
                   </div>`)
         })
      })
+    };
     </script>
 </body>
 </html>
