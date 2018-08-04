@@ -104,7 +104,7 @@
               $.get("/api/tables", function(data) {
                 console.log(data);
 
-                if(data.length > 5){
+                if(data.length > 4){
                     $.post("/api/waitlist", newTable)
                     .then(function(data) {
                         alert("You've been added to the waitlist");

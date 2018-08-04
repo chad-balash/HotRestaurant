@@ -29,7 +29,24 @@
                     </a>
                 </div>
             </div>
-            <div id="reservation-container"></div>
+            <div class="card">
+                    <div class="card-body">
+                      Tables Reserved
+                    </div>
+                  </div>
+            <div id="reservation-container">
+
+            </div>
+            <br>
+            <div class="card">
+                    <div class="card-body">
+                      Waitlist
+                    </div>
+                  </div>
+            <div id="waitlist-container">
+
+            </div>
+        
             
     </div>
                 
@@ -52,8 +69,25 @@
         });
     };
 
+    function getWaitlist() {
+        
+        $.get("/api/waitlist", function(data) {
+
+            data.forEach(function(item) {
+                $('#waitlist-container').append(`<div class="card">
+                        <div class="card-body" style="display: flex;">
+                                <i class="fa fa-square-o" aria-hidden="true"></i>
+                                <h3> | </h3>
+                                <h3>${item.name}</h3>
+                        </div>
+                    </div>`);
+            });
+        });
+    };
+
 
     $(document).ready(getTable());
+    $(document).ready(getWaitlist());
 
     </script>
 </body>
