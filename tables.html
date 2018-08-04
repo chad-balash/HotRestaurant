@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hot Restaurant</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+                <h1 class="text-center">
+                    <img src="./image/fire_new.png" style="width: 20%; height: 20%;">Hot Restaurant</h1>
+                <hr>
+                <h2 class="text-center">View Tables</h2>
+                <br>
+
+                <div class="text-center">
+                    <a href="/reserve">
+                        <button type="button" class="btn btn-lg btn-primary">Make a reservation</button>
+                    </a>
+                    <a href="/home">
+                        <button type="button" class="btn btn-lg btn-default">Return Home</button>
+                    </a>
+                </div>
+            </div>
+            <div id="reservation-container"></div>
+            
+    </div>
+                
+    <script> 
+
+    $(window).load(getTable());
+    
+    function getTable() {$.get("/api/tables", function(data) {
+        data.foreach(function(item) {
+            $('#reservation-container').append(`<div class="card">
+                    <div class="card-body" style="display: flex;">
+                            <i class="fa fa-square-o" aria-hidden="true"></i>
+                            <h3> | </h3>
+                            <h3>${item.name}</h3>
+                    </div>
+                  </div>`)
+        })
+     })
+    };
+    </script>
+</body>
+</html>
