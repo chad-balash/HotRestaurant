@@ -68,7 +68,7 @@
                                     <input type="text" class="form-control" id="reserve_uniqueID" name="id">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary submit">Submit</button>
+                                <button type="submit" class="btn btn-primary submit" id="submit-table">Submit</button>
                             </form>
 
                         </div>
@@ -87,3 +87,42 @@
             </footer>
 
         </div>
+
+
+        <script type="text/javascript">
+            $("#submit-table").on("click", function(event) {
+              event.preventDefault();
+              var newTable = {
+                name: $("#reserve_name").val().trim(),
+                phone: $("#reserve_phone").val().trim(),
+                email: $("#reserve_email").val().trim(),
+                party: $("#reserve_party").val().trim(), 
+                id: $("#reserve_uniqueID").val().trim()
+              };
+
+              //Pull the tables to see if there are more than five
+              $.get("/api/tables", function(data) {
+                console.log(data);
+
+                if(data.length > 5){
+                    $.post("/api/waitlist", newTable)
+                    .then(function(data) {
+                        alert("You've been added to the waitlist");
+                    });
+                }
+                else{
+                    $.post("/api/tables", newTable)
+                    .then(function(data) {
+                        alert("You've got a seat!");
+                    });
+
+                }
+              });
+        
+
+            });
+          </script>
+
+        </body>
+    </head>
+</html>
