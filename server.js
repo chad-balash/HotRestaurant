@@ -47,6 +47,11 @@ app.get("/reserve", function(req, res) {
 // Displays all people on the waitlist
 app.get("/api/waitlist", function(req, res) {
     return res.json(waitlistArray);
+
+    let waitlistTable = req.body;
+    tablesArray.push(waitlistTable);
+    res.json(waitlistTable);
+
 });
 
 // Displays all tables
@@ -57,13 +62,19 @@ app.get("/api/tables", function(req, res) {
 app.post("/api/tables", function(req, res){
 
     let newTable = req.body;
+    
 
   
     console.log(newTable);
-  
     tablesArray.push(newTable);
+    res.json(newTable); 
+
   
-    res.json(newTable);
+    
+  
+    // tablesArray.push(newTable);
+  
+    // res.json(newTable);
 
 });
 
