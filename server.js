@@ -10,6 +10,7 @@ var PORT = process.env.PORT || 3000;
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use('/image', express.static(__dirname +'/image'));
 
 
 // Variables
@@ -29,10 +30,12 @@ app.get("/", function(req, res) {
 
 app.get("/tables", function(req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
+  console.log("Tables");
 });
 
 app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
+    console.log("reserve");
   });
 
 
